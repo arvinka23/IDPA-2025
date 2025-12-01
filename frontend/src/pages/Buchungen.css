@@ -1,0 +1,42 @@
+/* Buchungen spezifische Styles */
+.buchungen {
+  padding: 0;
+}
+
+.buchungen-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.konto-info {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.betrag {
+  font-weight: 600;
+  text-align: right;
+}
+
+.betrag.positive {
+  color: #28a745;
+}
+
+.betrag.negative {
+  color: #dc3545;
+}
+
+/* Responsive Form */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .form-actions .btn {
+    width: 100%;
+  }
+}

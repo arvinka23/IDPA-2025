@@ -1,0 +1,75 @@
+/* Liquidität spezifische Styles */
+.liquiditaet {
+  padding: 0;
+}
+
+.chart-container {
+  height: 400px;
+  margin-top: 1rem;
+}
+
+.chart-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.chart-controls .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.status-excellent {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+}
+
+.status-good {
+  background: linear-gradient(135deg, #17a2b8, #6f42c1);
+  color: white;
+}
+
+.status-warning {
+  background: linear-gradient(135deg, #ffc107, #fd7e14);
+  color: white;
+}
+
+.status-danger {
+  background: linear-gradient(135deg, #dc3545, #e83e8c);
+  color: white;
+}
+
+.warning-actions {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.warning-actions h4 {
+  margin-bottom: 0.5rem;
+  color: #721c24;
+}
+
+.warning-actions ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.warning-actions li {
+  margin-bottom: 0.25rem;
+  color: #721c24;
+}
+
+/* Chart Responsive */
+@media (max-width: 768px) {
+  .chart-container {
+    height: 300px;
+  }
+  
+  .chart-controls {
+    flex-direction: column;
+  }
+  
+  .chart-controls .btn {
+    width: 100%;
+  }
+}
