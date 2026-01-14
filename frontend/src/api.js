@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// API Base URL - verwendet Proxy in Development, direkte URL als Fallback
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+// API Base URL
+// - Development: leer lassen => CRA Proxy kann greifen (frontend/package.json "proxy")
+// - Production: als Netlify/Vercel Env setzen (z.B. https://dein-backend.onrender.com)
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
 // Axios-Instanz erstellen
 const api = axios.create({

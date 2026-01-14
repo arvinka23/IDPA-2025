@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import './Bilanz.css';
 
 const Bilanz = () => {
@@ -12,7 +12,7 @@ const Bilanz = () => {
 
   const fetchBilanz = async () => {
     try {
-      const response = await axios.get('/api/liquiditaet');
+      const response = await api.get('/api/liquiditaet');
       setBilanz(response.data);
       setLoading(false);
     } catch (error) {

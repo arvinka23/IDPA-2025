@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 
-// Secret Key für JWT (in Produktion sollte das in .env sein)
-const JWT_SECRET = 'liquiditaetsnachweis_secret_key_2025';
+// Secret Key für JWT (in Produktion zwingend via ENV setzen)
+// Render/Railway/Fly: als Environment Variable `JWT_SECRET` konfigurieren.
+const JWT_SECRET = process.env.JWT_SECRET || 'liquiditaetsnachweis_secret_key_2025';
 
 // Middleware um zu prüfen ob User eingeloggt ist
 const authenticateToken = (req, res, next) => {

@@ -102,6 +102,46 @@ liquiditaetsnachweis/
 - Multi-Perioden-Analyse
 - Mobile App (React Native)
 
+## Deployment (Full-Stack Hosting)
+
+Dieses Projekt besteht aus:
+- **Frontend**: React (CRA) in `frontend/`
+- **Backend**: Node.js/Express in `backend/` (API unter `/api/*`)
+- **Datenbank**: SQLite (Datei, Pfad via `DB_PATH`)
+
+### 1) Backend auf Render (empfohlen)
+
+1. Render → **New** → **Web Service** → Repo auswählen.
+2. Settings:
+   - **Root Directory**: leer lassen (Repo-Root)
+   - **Build Command**: `npm install`
+   - **Start Command**: `node backend/server.js`
+3. Environment Variables (Render → Environment):
+   - **JWT_SECRET**: ein geheimer Wert (z.B. 32+ Zeichen)
+   - **CORS_ORIGIN**: URL deines Frontends (z.B. `https://deinprojekt.netlify.app`)
+   - **DB_PATH**: bei persistentem Storage z.B. `/var/data/liquiditaet.db`
+4. (Wichtig für SQLite Daten-Persistenz) Render **Disk**:
+   - Mount Path: `/var/data`
+   - Danach zeigt `DB_PATH` auf `/var/data/liquiditaet.db`
+
+Backend-Test:
+- `GET /api/health` muss eine JSON-Meldung liefern.
+
+### 2) Frontend auf Netlify (oder Vercel)
+
+Netlify:
+1. Netlify → **Add new site** → **Import from Git** → Repo auswählen
+2. Build settings:
+   - **Base directory**: `frontend`
+   - **Build command**: `npm run build`
+   - **Publish directory**: `frontend/build`
+3. Environment Variables (Netlify → Site configuration → Environment variables):
+   - **REACT_APP_API_URL**: URL deines Render-Backends (z.B. `https://dein-backend.onrender.com`)
+
+Hinweis:
+- Ohne `REACT_APP_API_URL` versucht das Frontend API-Calls relativ zur eigenen Domain zu machen und Login/API funktionieren nicht.
+
+
 ## Lizenz
 
 MIT License - IDPA Projekt 2025

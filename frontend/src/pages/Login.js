@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import './Login.css';
 
 const Login = ({ onLogin }) => {
@@ -46,7 +46,7 @@ const Login = ({ onLogin }) => {
 
     try {
       const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
-      const response = await axios.post(endpoint, formData);
+      const response = await api.post(endpoint, formData);
 
       // Token speichern
       localStorage.setItem('token', response.data.token);

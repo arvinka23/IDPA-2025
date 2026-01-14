@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
 
 const AuthContext = createContext(null);
 
@@ -14,8 +13,6 @@ export const AuthProvider = ({ children }) => {
 
     if (token && savedUser) {
       setUser(JSON.parse(savedUser));
-      // Token in Axios Default Headers setzen
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
     setLoading(false);
   }, []);
@@ -27,7 +24,6 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    delete axios.defaults.headers.common['Authorization'];
     setUser(null);
   };
 

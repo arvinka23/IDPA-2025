@@ -10,12 +10,22 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+// CORS: für echtes Hosting idealerweise auf Frontend-Origin einschränken.
+// - Lokal: keine ENV nötig (default: alle Origins erlaubt)
+// - Produktion: `CORS_ORIGIN` setzen, z.B. "https://dein-frontend.netlify.app"
+const corsOriginEnv = (process.env.CORS_ORIGIN || '').trim();
+if (corsOriginEnv) {
+  const allowedOrigins = corsOriginEnv.split(',').map((s) => s.trim()).filter(Boolean);
+  app.use(cors({ origin: allowedOrigins, credentials: true }));
+} else {
+  app.use(cors());
+}
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Database setup
-const dbPath = path.join(__dirname, '..', 'database', 'liquiditaet.db');
+// Für Hosting: `DB_PATH` setzen (z.B. Render Disk Mount: /var/data/liquiditaet.db)
+const dbPath = process.env.DB_PATH || path.join(__dirname, '..', 'database', 'liquiditaet.db');
 const db = new sqlite3.Database(dbPath);
 
 // Database in app verfügbar machen

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import './Buchungen.css';
 
 const Buchungen = () => {
@@ -23,8 +23,8 @@ const Buchungen = () => {
   const fetchData = async () => {
     try {
       const [buchungenRes, kontenplanRes] = await Promise.all([
-        axios.get('/api/buchungssaetze'),
-        axios.get('/api/kontenplan')
+        api.get('/api/buchungssaetze'),
+        api.get('/api/kontenplan')
       ]);
       setBuchungen(buchungenRes.data);
       setKontenplan(kontenplanRes.data);
@@ -45,7 +45,7 @@ const Buchungen = () => {
     }
     
     try {
-      await axios.post('/api/buchungssaetze', {
+      await api.post('/api/buchungssaetze', {
         ...formData,
         betrag: parseFloat(formData.betrag)
       });

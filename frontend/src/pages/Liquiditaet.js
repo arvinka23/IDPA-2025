@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -38,7 +38,7 @@ const Liquiditaet = () => {
   const checkBuchungenAndFetch = async () => {
     try {
       // Zuerst prüfen, ob Buchungen vorhanden sind
-      const buchungenResponse = await axios.get('/api/buchungssaetze');
+      const buchungenResponse = await api.get('/api/buchungssaetze');
       const buchungen = buchungenResponse.data;
       
       if (!buchungen || buchungen.length === 0) {
@@ -50,7 +50,7 @@ const Liquiditaet = () => {
       
       setHasBuchungen(true);
       // Wenn Buchungen vorhanden sind, Liquiditätsdaten laden
-      const response = await axios.get('/api/liquiditaet');
+      const response = await api.get('/api/liquiditaet');
       setLiquiditaetData(response.data);
       setLoading(false);
     } catch (error) {
@@ -62,7 +62,7 @@ const Liquiditaet = () => {
 
   const fetchLiquiditaetData = async () => {
     try {
-      const response = await axios.get('/api/liquiditaet');
+      const response = await api.get('/api/liquiditaet');
       setLiquiditaetData(response.data);
       setLoading(false);
     } catch (error) {

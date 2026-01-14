@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -45,9 +45,9 @@ const Dashboard = () => {
   const fetchDashboardData = async () => {
     try {
       const [kontenplanRes, buchungenRes, liquiditaetRes] = await Promise.all([
-        axios.get('/api/kontenplan'),
-        axios.get('/api/buchungssaetze'),
-        axios.get('/api/liquiditaet')
+        api.get('/api/kontenplan'),
+        api.get('/api/buchungssaetze'),
+        api.get('/api/liquiditaet')
       ]);
 
       const liquiditaetSumme = liquiditaetRes.data.reduce((sum, item) => {

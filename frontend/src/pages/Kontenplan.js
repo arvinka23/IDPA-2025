@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import './Kontenplan.css';
 
 const Kontenplan = () => {
@@ -19,7 +19,7 @@ const Kontenplan = () => {
 
   const fetchKontenplan = async () => {
     try {
-      const response = await axios.get('/api/kontenplan');
+      const response = await api.get('/api/kontenplan');
       setKonten(response.data);
       setLoading(false);
     } catch (error) {
@@ -31,7 +31,7 @@ const Kontenplan = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/kontenplan', formData);
+      await api.post('/api/kontenplan', formData);
       alert('ERFOLG: Konto erfolgreich erstellt!');
       setFormData({ kontonummer: '', kontenname: '', kontenart: '', aktivpassiv: '' });
       setShowForm(false);
