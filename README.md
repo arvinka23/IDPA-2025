@@ -104,4 +104,4 @@ liquiditaetsnachweis/
 
 ## Lizenz
 
-MIT License - IDPA Projekt 2024
+MIT License - IDPA Projekt 2025
