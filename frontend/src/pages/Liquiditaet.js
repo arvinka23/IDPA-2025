@@ -29,10 +29,36 @@ const Liquiditaet = () => {
   const [liquiditaetData, setLiquiditaetData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [chartType, setChartType] = useState('bar');
+  const [hasBuchungen, setHasBuchungen] = useState(false);
 
   useEffect(() => {
-    fetchLiquiditaetData();
+    checkBuchungenAndFetch();
   }, []);
+
+  const checkBuchungenAndFetch = async () => {
+    try {
+      // Zuerst prüfen, ob Buchungen vorhanden sind
+      const buchungenResponse = await axios.get('/api/buchungssaetze');
+      const buchungen = buchungenResponse.data;
+      
+      if (!buchungen || buchungen.length === 0) {
+        setLoading(false);
+        setHasBuchungen(false);
+        alert('Es gibt nicht genug Buchungen.\n\nBitte erstellen Sie zuerst Buchungen, bevor Sie die Liquiditätsanalyse anzeigen können.');
+        return;
+      }
+      
+      setHasBuchungen(true);
+      // Wenn Buchungen vorhanden sind, Liquiditätsdaten laden
+      const response = await axios.get('/api/liquiditaet');
+      setLiquiditaetData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Fehler beim Laden der Daten:', error);
+      setLoading(false);
+      alert('Fehler beim Laden der Daten. Bitte versuchen Sie es erneut.');
+    }
+  };
 
   const fetchLiquiditaetData = async () => {
     try {
@@ -168,6 +194,22 @@ const Liquiditaet = () => {
     return <div className="loading">Lade Liquiditätsdaten...</div>;
   }
 
+  // Wenn keine Buchungen vorhanden sind, zeige nur eine leere Seite
+  if (!hasBuchungen) {
+    return (
+      <div className="liquiditaet">
+        <div className="page-header">
+          <h1>Liquiditätsanalyse</h1>
+          <p>Grafische Darstellung der liquiden Mittel und Trendanalyse</p>
+        </div>
+        <div className="empty-state">
+          <p>Es gibt nicht genug Buchungen.</p>
+          <p>Bitte erstellen Sie zuerst Buchungen, bevor Sie die Liquiditätsanalyse anzeigen können.</p>
+        </div>
+      </div>
+    );
+  }
+
   const liquiditaetStatus = getLiquiditaetStatus();
   const totalLiquiditaet = calculateTotalLiquiditaet();
 
@@ -178,7 +220,7 @@ const Liquiditaet = () => {
         <p>Grafische Darstellung der liquiden Mittel und Trendanalyse</p>
         <button 
           className="btn btn-primary"
-          onClick={fetchLiquiditaetData}
+          onClick={checkBuchungenAndFetch}
         >
           Daten aktualisieren
         </button>

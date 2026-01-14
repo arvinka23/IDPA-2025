@@ -1,10 +1,26 @@
-ARBEITSJOURNAL.md
-DOKUMENTATION_FINAL.md
-PROJEKTDOKUMENTATION.md
-TESTKONZEPT.md
-Dokumentation/
-node_modules/
-frontend/node_modules/
+node_modules
 
+# Dependencies (nested)
+**/node_modules/
 
+# Local env
+.env
+.env.*
 
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Office / binary docs (keep repo lightweight)
+*.docx
+*.xlsx
+
+# Logs
+*.log
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

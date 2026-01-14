@@ -10,6 +10,34 @@ const Dashboard = () => {
     bilanzsumme: 0
   });
 
+  const features = [
+    {
+      title: 'Kontenplan & Buchungen',
+      description: 'Konten anlegen, Buchungssätze erfassen und automatisch verknüpfen.',
+      image: 'https://img.icons8.com/fluency/64/accounting.png'
+    },
+    {
+      title: 'Automatische Bilanz',
+      description: 'Bilanz wird aus den erfassten Buchungen automatisch erzeugt.',
+      image: 'https://img.icons8.com/fluency/64/bank-card-front-side.png'
+    },
+    {
+      title: 'Liquiditätsanalyse',
+      description: 'Liquide Mittel im Diagramm mit Trendverlauf visualisiert.',
+      image: 'https://img.icons8.com/fluency/64/combo-chart.png'
+    },
+    {
+      title: 'Geldflussrechnung',
+      description: 'Operative, Finanzierungs- und Investitionstätigkeiten übersichtlich gegliedert.',
+      image: 'https://img.icons8.com/fluency/64/cash-in-hand.png'
+    },
+    {
+      title: 'Warnsystem',
+      description: 'Automatische Hinweise bei kritischen Liquiditätsständen.',
+      image: 'https://img.icons8.com/fluency/64/high-importance.png'
+    }
+  ];
+
   useEffect(() => {
     fetchDashboardData();
   }, []);
@@ -124,19 +152,25 @@ const Dashboard = () => {
         </div>
         <div className="welcome-content">
           <p>
-            Diese Anwendung ermöglicht es Ihnen, Buchungssätze zu erfassen und automatisch 
-            eine Bilanz sowie Liquiditätsnachweise zu erstellen. Die wichtigsten Kennzahlen 
-            werden automatisch berechnet und grafisch dargestellt.
+            Erfassen Sie Ihre Buchungssätze im Kontenplan. Die Bilanz und Liquiditätsnachweise 
+            werden automatisch aus den erfassten Daten generiert. Alle wichtigen Kennzahlen 
+            werden berechnet und in übersichtlichen Diagrammen dargestellt.
           </p>
           <div className="features-list">
-            <h3>Hauptfunktionen:</h3>
-            <ul>
-              <li>✅ Automatische Kontierung basierend auf Buchungssätzen</li>
-              <li>✅ Automatische Bilanzführung</li>
-              <li>✅ Grafische Darstellung der Liquiditätsveränderungen</li>
-              <li>✅ Geldflussrechnung mit operativen, Finanzierungs- und Investitionstätigkeiten</li>
-              <li>✅ Warnsystem für Liquiditätsengpässe</li>
-            </ul>
+            <h3>Funktionen</h3>
+            <div className="features-grid">
+              {features.map((feature) => (
+                <div className="feature-card" key={feature.title}>
+                  <div className="feature-image">
+                    <img src={feature.image} alt={feature.title} />
+                  </div>
+                  <div className="feature-content">
+                    <h4>{feature.title}</h4>
+                    <p>{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

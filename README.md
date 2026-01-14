@@ -2,24 +2,24 @@
 
 Eine moderne Web-Applikation für die automatische Erstellung von Liquiditätsnachweisen und Kennzahlenberechnung basierend auf Buchungssätzen.
 
-## 🚀 Features
+## Features
 
-- **Automatische Kontierung** basierend auf Buchungssätzen
-- **Automatische Bilanzführung** mit Echtzeit-Updates
-- **Grafische Darstellung** der Liquiditätsveränderungen
-- **Geldflussrechnung** mit operativen, Finanzierungs- und Investitionstätigkeiten
-- **Warnsystem** für Liquiditätsengpässe
-- **Moderne Web-Oberfläche** mit React
+- Kontenplanverwaltung mit automatischer Kategorisierung
+- Erfassung von Buchungssätzen nach doppelter Buchführung
+- Automatische Bilanzgenerierung aus den erfassten Buchungen
+- Liquiditätsanalyse mit grafischer Darstellung
+- Geldflussrechnung nach Tätigkeitsbereichen
+- Warnsystem bei Liquiditätsengpässen
 
-## 🛠️ Technologie-Stack
+## Technologie-Stack
 
-- **Frontend:** React 18 + CSS3
-- **Backend:** Node.js + Express
-- **Datenbank:** SQLite
-- **Visualisierung:** Chart.js + React-ChartJS-2
-- **Styling:** Custom CSS mit modernem Design
+- Frontend: React 18 + CSS3
+- Backend: Node.js + Express
+- Datenbank: SQLite
+- Visualisierung: Chart.js + React-ChartJS-2
+- Authentifizierung: JWT
 
-## 📦 Installation
+## Installation
 
 ### Voraussetzungen
 - Node.js (Version 16 oder höher)
@@ -41,7 +41,7 @@ npm run dev
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:5000
 
-## 🏗️ Projektstruktur
+## Projektstruktur
 
 ```
 liquiditaetsnachweis/
@@ -56,7 +56,7 @@ liquiditaetsnachweis/
 └── package.json          # Root Dependencies
 ```
 
-## 📊 Hauptfunktionen
+## Hauptfunktionen
 
 ### 1. Kontenplan
 - Erstellen und verwalten von Konten
@@ -78,7 +78,7 @@ liquiditaetsnachweis/
 - Trendanalyse über Zeit
 - Warnsystem bei kritischen Liquiditätsständen
 
-## 🔧 API Endpoints
+## API Endpoints
 
 - `GET /api/kontenplan` - Kontenplan abrufen
 - `POST /api/kontenplan` - Neues Konto erstellen
@@ -87,22 +87,21 @@ liquiditaetsnachweis/
 - `GET /api/bilanz` - Bilanz abrufen
 - `GET /api/liquiditaet` - Liquiditätsdaten abrufen
 
-## 🎯 IDPA Projektziele
+## IDPA Projektziele
 
-✅ **Automatische Kontierung** - Kontenplan wird automatisch ausgefüllt  
-✅ **Automatische Bilanz** - Bilanz wird automatisch nachgeführt  
-✅ **Grafische Darstellung** - Liquiditätsveränderungen werden visualisiert  
-✅ **Geldflussrechnung** - Aufschlüsselung nach Tätigkeitsbereichen  
-✅ **Warnsystem** - Erkennung von Liquiditätsengpässen  
+- Kontenplanverwaltung mit automatischer Kategorisierung
+- Automatische Bilanzgenerierung aus Buchungssätzen
+- Grafische Visualisierung der Liquiditätsentwicklung
+- Geldflussrechnung nach Tätigkeitsbereichen
+- Warnsystem für Liquiditätsengpässe  
 
-## 🚀 Erweiterungsmöglichkeiten
+## Erweiterungsmöglichkeiten
 
 - Export-Funktionen (PDF, Excel)
 - Erweiterte Kennzahlenberechnung
-- Benutzerverwaltung
 - Multi-Perioden-Analyse
 - Mobile App (React Native)
 
-## 📝 Lizenz
+## Lizenz
 
 MIT License - IDPA Projekt 2024
